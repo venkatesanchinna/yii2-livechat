@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\modules\Livechat\models;
+namespace app\modules\chat\models;
 
 use Yii;
 
@@ -38,8 +38,8 @@ class LCStates extends \yii\db\ActiveRecord
             [['time'], 'safe'],
             [['state'], 'string', 'max' => 100],
             [['option_status'], 'string', 'max' => 32],
-            [['sender'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['sender' => 'id']],
-            [['receiver'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['receiver' => 'id']],
+            [['sender'], 'exist', 'skipOnError' => true, 'targetClass' => \common\models\User::className(), 'targetAttribute' => ['sender' => 'id']],
+            [['receiver'], 'exist', 'skipOnError' => true, 'targetClass' => \common\models\User::className(), 'targetAttribute' => ['receiver' => 'id']],
         ];
     }
 

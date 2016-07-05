@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\modules\Livechat\controllers;
+namespace app\modules\chat\controllers;
 
 use Yii;
 use yii\data\ActiveDataProvider;
@@ -8,8 +8,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
-use backend\modules\Livechat\models\Chat;
-use backend\modules\Livechat\\LCStates;
+use app\modules\chat\models\Chat;
+use app\modules\chat\models\LCStates;
 use common\models\User;
 /**
  * BookingController implements the CRUD actions for Booking model.
@@ -104,7 +104,7 @@ class LivechatController extends Controller
 	    $session = Yii::$app->session;
         $session['juichat'] = ['viewed_rows' => array()];
         $user=Yii::$app->user->identity;
-		return array('hash'=>@$user->id, 'email' => @$user->email, 'user' => @$user->first_name.' '.@$user->last_name, 'gravitar' =>$this->format_photo($user->id),'viewers' => $this->GetViewers(), 'chat' => $this->GetChats());
+		return array('hash'=>@$user->id, 'email' => @$user->email, 'user' => @$user->username.' '.@$user->username, 'gravitar' =>$this->format_photo($user->id),'viewers' => $this->GetViewers(), 'chat' => $this->GetChats());
 		
 	}
 
@@ -145,7 +145,7 @@ class LivechatController extends Controller
 		$result=array();
 		$session = Yii::$app->session;
 		$connection = Yii::$app->db;
-		$command = $connection->createCommand ( "SELECT DISTINCT sender FROM t_lc_chat WHERE receiver='".mysql_real_escape_string($this->GetHash())."'");
+		$command = $connection->createCommand ( "SELECT DISTINCT sender FROM lc_chat WHERE receiver='".mysql_real_escape_string($this->GetHash())."'");
 		$senders = $command->queryAll ();
 		// get all unique calls where im the receiver
 		foreach($senders as $row) {
@@ -153,7 +153,7 @@ class LivechatController extends Controller
 			$_lastmsg='';
 
 			//get all calls related to this where im the receiver
-			$command1 = $connection->createCommand ( "SELECT * FROM t_lc_chat WHERE sender='".mysql_real_escape_string($row['sender'])."' AND receiver='".mysql_real_escape_string($this->GetHash())."'");
+			$command1 = $connection->createCommand ( "SELECT * FROM lc_chat WHERE sender='".mysql_real_escape_string($row['sender'])."' AND receiver='".mysql_real_escape_string($this->GetHash())."'");
 		    $senders1 = $command1->queryAll ();
 			foreach($senders1 as $row1) {
 			if(!isset($setvalue[$this->GetHash()]))
@@ -179,7 +179,7 @@ class LivechatController extends Controller
 			}
 
 			// get all calls related to this where im the sender
-			$command2 = $connection->createCommand ( "SELECT * FROM t_lc_chat WHERE sender='".mysql_real_escape_string($this->GetHash())."' AND receiver='".mysql_real_escape_string($row['sender'])."'");
+			$command2 = $connection->createCommand ( "SELECT * FROM lc_chat WHERE sender='".mysql_real_escape_string($this->GetHash())."' AND receiver='".mysql_real_escape_string($row['sender'])."'");
 		    $senders2 = $command2->queryAll ();
 			foreach($senders2 as $row2) {
 			$ruser=User::find()->where(['id'=>mysql_real_escape_string($row['sender'])])->one();
@@ -198,7 +198,7 @@ class LivechatController extends Controller
 			}
 			
 			// sort the chat records by time
-			usort($chat, array('backend\controllers\LivechatController', 'SortByTime'));
+			usort($chat, array('app\modules\chat\controllers\LivechatController', 'SortByTime'));
 
 			// display the chat records as html
 			$output=array();
@@ -217,12 +217,12 @@ class LivechatController extends Controller
 		
 		
 		// get all unique calls where im the sender and no reply has been sent from the receiver
-		$receiver1 = $connection->createCommand ( "SELECT DISTINCT receiver, chat FROM t_lc_chat WHERE sender='".mysql_real_escape_string($this->GetHash())."'");
+		$receiver1 = $connection->createCommand ( "SELECT DISTINCT receiver, chat FROM lc_chat WHERE sender='".mysql_real_escape_string($this->GetHash())."'");
 	    $receivers1 = $receiver1->queryAll ();
 		foreach($receivers1 as $row) {
 			$_lastmsg='';
 			
-			$receiver2 = $connection->createCommand ( "SELECT * FROM t_lc_chat WHERE sender='".mysql_real_escape_string($row['receiver'])."' AND receiver='".mysql_real_escape_string($this->GetHash())."'");
+			$receiver2 = $connection->createCommand ( "SELECT * FROM lc_chat WHERE sender='".mysql_real_escape_string($row['receiver'])."' AND receiver='".mysql_real_escape_string($this->GetHash())."'");
 	    $receivers2 = $receiver2->queryAll ();
 	    
 			if(count($receivers2) == 0){
@@ -230,7 +230,7 @@ class LivechatController extends Controller
 
 				// duplicated code from above!
 				$chat=array();
-				$receiver3 = $connection->createCommand ( "SELECT * FROM t_lc_chat WHERE sender='".mysql_real_escape_string($this->GetHash())."' AND receiver='".mysql_real_escape_string($row['receiver'])."'");
+				$receiver3 = $connection->createCommand ( "SELECT * FROM lc_chat WHERE sender='".mysql_real_escape_string($this->GetHash())."' AND receiver='".mysql_real_escape_string($row['receiver'])."'");
 	    $receivers3 = $receiver3->queryAll ();
 				foreach($receivers3 as $row3) {
 					if(!@in_array($row3['id'], $session['juichat']['viewed_rows'][$this->GetHash()])){
@@ -252,7 +252,7 @@ class LivechatController extends Controller
 					$_lastmsg=strtotime($row3['time']);
 				}
 				// sort the chat records by time
-				usort($chat, array('backend\controllers\LivechatController', 'SortByTime'));
+				usort($chat, array('app\modules\chat\controllers\LivechatController', 'SortByTime'));
 
 				// display the chat records as html
 				$output=array();
@@ -271,7 +271,7 @@ class LivechatController extends Controller
 			}
 		}
 
-		usort($result, array('backend\controllers\LivechatController', 'SortByPosition'));
+		usort($result, array('app\modules\chat\controllers\LivechatController', 'SortByPosition'));
 		
 		return $result;
 	}
@@ -372,8 +372,8 @@ class LivechatController extends Controller
 
 	protected function GetUserName($_hash){
 	    $user=User::findOne(mysql_real_escape_string($this->Sanitize($_hash)));
-		if(!$user['first_name']) return $this->defaultuser;
-		return $user['first_name'].' '.$user['first_name'];
+		if(!$user['username']) return $this->defaultuser;
+		return $user['username'].' '.$user['username'];
 	}	
 
 	protected function GetUserEmail($_hash){
@@ -397,21 +397,20 @@ class LivechatController extends Controller
                 $usern['user']=$user['name'];
                 $usern['email']=$user['email'];
                 $usern['hash']=$user['hash'];
-                $usern['role_name']=$user['role_name'];
-                $usern['role_type']=$user['role_type'];
 			    $usern['gravitar']=$this->format_photo($user['id']);
-			    $result[$user['role_name']][]=$usern;
+			    $viewers[]=$usern;
 			}
         }
         
-		return $result;
+        
+		return $viewers;
 	}	
 	
 	protected function format_photo($id)
 	{
 	
-            $imurl="http://www.gravatar.com/avatar/".$this->GetGravitarHash($id)."?d=mm";
-           // $iurl=Utility::getphoto($photo,'128');
+            //$imurl="http://www.gravatar.com/avatar/".$this->GetGravitarHash($id)."?d=mm";
+            $iurl=$this->getphoto('','128');
             return $iurl;
 	
 	}
@@ -432,6 +431,24 @@ class LivechatController extends Controller
 			return true;
 		} else return false;
 	}
+	protected function getphoto($photo,$size='64',$customimage=false)
+            {
+                $image=json_decode($photo);
+                if($customimage)
+                $default=$customimage;
+                else
+                $default='user_'.$size.'_'.$size.'.png';
+                $iurl=str_replace('/admin','',Yii::$app->request->baseUrl).'/backend/modules/chat/assets/default/'.$default;
+               
+                if(isset($image->name) && isset($image->path_original))
+                {
+                    $iurls=Yii::getAlias('@backend').$image->path_original.$image->name;
+                    if(file_exists($iurls)){
+                        $iurl=str_replace('/opt/lampp/htdocs/','/',$iurls);
+                    }
+                }
+                return $iurl;
+            }
 
 	
 }

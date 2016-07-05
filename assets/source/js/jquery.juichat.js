@@ -15,7 +15,7 @@ var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.spli
 		header_wrapper: '.header_content',
 		user_container:'.ui-container',
 		head_title:'.book_app txtcap',
-		page: baseUrl+'/admin/livechat'
+		page: baseUrl+'/backend/web/index.php?r=chat/livechat'
 	}, options);
 
 
@@ -76,7 +76,8 @@ var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.spli
 	}
 
 	function fnRenderGravitar(gravitar){
-		return '<div class="ui-lc-gravitar"><img src="'+gravitar+'"/></div>';
+	return '<div class="ui-lc-gravitar"><img src="http://www.gravatar.com/avatar/'+gravitar+'?d=mm"/></div>';
+		//return '<div class="ui-lc-gravitar"><img src="'+gravitar+'"/></div>';
 	}
 
 	function fnParseViewers(data){
@@ -86,15 +87,15 @@ var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.spli
         $('<div/>').addClass('ui-lc-viewer-containerheader-txt').html(fnRenderGravitar(_mydata.gravitar) + ' ' +_mydata.user).appendTo('.ui-lc-viewer-containerheader');
         //ar user_container= $('<div/>').addClass('ui-container').appendTo(settings.viewer_wrapper);
 		
-		$.each(data, function(j, items){
-		$('.ui-lc-viewer-container ui-widget').remove();
-		$('.'+items.role_type).remove();
-		$('<div/>',{id:items.role_type}).addClass('header').html(j).appendTo(settings.user_container);
-		var newclass=j.replace(" ","-");
-		$('<ul/>',{id:items.role_type}).addClass('ui-lc-viewer-container ui-widget '+newclass).appendTo(settings.user_container);
+		//$.each(data, function(j, items){
+		//$('.ui-lc-viewer-container ui-widget').remove();
+		//$('.'+items.role_type).remove();
+		//$('<div/>',{id:items.role_type}).addClass('header').html(j).appendTo(settings.user_container);
+		//var newclass=j.replace(" ","-");
+		//$('<ul/>',{id:items.role_type}).addClass('ui-lc-viewer-container ui-widget '+newclass).appendTo(settings.user_container);
 		
-		
-		$.each(items, function(i, item){
+		$('<ul/>').addClass('ui-lc-viewer-container ui-widget').appendTo(settings.viewer_wrapper);
+		$.each(data, function(i, item){
 		
 			var _row=$('<li/>', {title:item.user}).html(fnRenderGravitar(item.gravitar));
 			var _button=$('<div/>', {'class': 'ui-lc-viewers-user'}).html(item.user).click(function(){
@@ -114,12 +115,12 @@ var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.spli
 
 			$('<div/>', {'class': 'ui-helper-clearfix'}).appendTo(_row);
 
-			_row.appendTo('.'+newclass);
+			_row.appendTo('.ui-lc-viewer-container');
 			});
 			
-			item=undefined;
-			items=false;
-		});
+			//item=undefined;
+			//items=false;
+		//});
 	}
 
 

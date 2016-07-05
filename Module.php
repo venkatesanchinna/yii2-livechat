@@ -1,16 +1,16 @@
 <?php
 
-namespace backend\modules\Livechat;
+namespace app\modules\chat;
 
 /**
- * report module definition class
+ * chat module definition class
  */
 class Module extends \yii\base\Module
 {
     /**
      * @inheritdoc
      */
-    public $controllerNamespace = 'backend\modules\Livechat\controllers';
+    public $controllerNamespace = 'app\modules\chat\controllers';
 
     /**
      * @inheritdoc

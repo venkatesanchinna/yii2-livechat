@@ -1,6 +1,8 @@
 
 <?php
 use yii\helpers\Html;
+use app\modules\chat\assets\LivechatAsset;
+LivechatAsset::register($this);
 ?>
 
 <div class="book_appointment ui-lc-viewers plus-minus">

@@ -1,5 +1,5 @@
 <?php
-namespace backend\modules\Livechat\assets;
+namespace app\modules\chat\assets;
 
 use yii\web\AssetBundle;
 
@@ -8,13 +8,14 @@ use yii\web\AssetBundle;
  *
  * @author Vinoth Pandiyan <vinoth.p@caritorsolutions.com>
  */
-class LiveChatAsset extends AssetBundle
+class LivechatAsset extends AssetBundle
 {
     // the alias to assets folder in file system
-    public $sourcePath = '@webroot/modules/LiveChat/assets/source';
-    public $css = ['css/juichat.css'];
+    public $sourcePath = '/opt/lampp/htdocs/yii2-livechatlocal/backend/modules/chat/assets/source';
+    public $css = ['css/juichat.css','css/jquery.cssemoticons.css'];
     public $js = [
       'js/jquery.juichat.js',
+      'js/jquery.cssemoticons.min.js',
     ];
     // that are the dependecies, for making Asset bundle work with Yii2 framework
     public $depends = [

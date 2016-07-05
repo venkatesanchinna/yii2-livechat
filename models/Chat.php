@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\modules\Livechat\models;
+namespace app\modules\chat\models;
 use common\models\User;
 use Yii;
 
@@ -75,7 +75,7 @@ class Chat extends \yii\db\ActiveRecord
         if(!Yii::$app->user->isGuest) {
         $query = User::find()->orderby('username asc');
         $query->select(['user.id','username as name','email','user.id as hash']);
-        $query->where("user.id != '".$id."' AND user.status='1' AND isonline=1");
+        $query->where("user.id != '".$id."' AND isonline=1");
         return $query->asArray()->all();
         }
         return array();
