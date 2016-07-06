@@ -433,14 +433,14 @@ class LivechatController extends Controller
 	}
 	protected function getphoto($photo,$size='64',$customimage=false)
             {
-                $image=json_decode($photo);
+                $image=$photo;
                 if($customimage)
                 $default=$customimage;
                 else
                 $default='user_'.$size.'_'.$size.'.png';
-                $iurl=str_replace('/admin','',Yii::$app->request->baseUrl).'/backend/modules/chat/assets/default/'.$default;
+                $iurl='/yii2-livechatlocal/backend/modules/chat/assets/source/default/'.$default;
                
-                if(isset($image->name) && isset($image->path_original))
+                if(isset($image) && !empty($image))
                 {
                     $iurls=Yii::getAlias('@backend').$image->path_original.$image->name;
                     if(file_exists($iurls)){

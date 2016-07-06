@@ -76,8 +76,8 @@ var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.spli
 	}
 
 	function fnRenderGravitar(gravitar){
-	return '<div class="ui-lc-gravitar"><img src="http://www.gravatar.com/avatar/'+gravitar+'?d=mm"/></div>';
-		//return '<div class="ui-lc-gravitar"><img src="'+gravitar+'"/></div>';
+	//return '<div class="ui-lc-gravitar"><img src="http://www.gravatar.com/avatar/'+gravitar+'?d=mm"/></div>';
+		return '<div class="ui-lc-gravitar"><img src="'+gravitar+'"/></div>';
 	}
 
 	function fnParseViewers(data){
@@ -94,7 +94,7 @@ var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.spli
 		//var newclass=j.replace(" ","-");
 		//$('<ul/>',{id:items.role_type}).addClass('ui-lc-viewer-container ui-widget '+newclass).appendTo(settings.user_container);
 		
-		$('<ul/>').addClass('ui-lc-viewer-container ui-widget').appendTo(settings.viewer_wrapper);
+		$('<ul/>').addClass('ui-lc-viewer-container ui-widget').appendTo(settings.user_container);
 		$.each(data, function(i, item){
 		
 			var _row=$('<li/>', {title:item.user}).html(fnRenderGravitar(item.gravitar));
