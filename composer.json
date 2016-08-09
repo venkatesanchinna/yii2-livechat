@@ -1,0 +1,29 @@
+{
+    "name": "venkatesanchinna/yii2-livechat",
+    "description": "Online chat in the system",
+    "homepage": "https://github.com/venkatesanchinna/yii2-livechat/",
+    "keywords": ["yii2", "live-chat", "chat", "online-chat", "livechat"],
+    "type": "yii2-extension",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/venkatesanchinna/yii2-livechat/issues",
+        "source": "https://github.com/venkatesanchinna/yii2-livechat/"
+    },
+    "authors": [
+        {
+            "name": "Venkatesan C",
+            "email": "venkatesangee@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "venkatesanchinna\\yii2-livechat\\": ""
+        }
+    }
+}
+
