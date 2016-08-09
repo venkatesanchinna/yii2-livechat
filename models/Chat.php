@@ -73,9 +73,9 @@ class Chat extends \yii\db\ActiveRecord
     public function getChatUsers($id)
     {
         if(!Yii::$app->user->isGuest) {
-        $query = User::find()->orderby('username asc');
-        $query->select(['user.id','username as name','email','user.id as hash']);
-        $query->where("user.id != '".$id."' AND isonline=1");
+        $query = User::find()->orderby('first_name asc');
+        $query->select(['user.id','CONCAT(`first_name`," ",`last_name`) as name','email','user.id as hash']);
+        $query->where("user.id != '".$id."'");
         return $query->asArray()->all();
         }
         return array();

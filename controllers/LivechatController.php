@@ -104,7 +104,7 @@ class LivechatController extends Controller
 	    $session = Yii::$app->session;
         $session['juichat'] = ['viewed_rows' => array()];
         $user=Yii::$app->user->identity;
-		return array('hash'=>@$user->id, 'email' => @$user->email, 'user' => @$user->username.' '.@$user->username, 'gravitar' =>$this->format_photo($user->id),'viewers' => $this->GetViewers(), 'chat' => $this->GetChats());
+		return array('hash'=>@$user->id, 'email' => @$user->email, 'user' => @$user->first_name.' '.@$user->last_name, 'gravitar' =>$this->format_photo($user->id),'viewers' => $this->GetViewers(), 'chat' => $this->GetChats());
 		
 	}
 
@@ -372,8 +372,8 @@ class LivechatController extends Controller
 
 	protected function GetUserName($_hash){
 	    $user=User::findOne(mysql_real_escape_string($this->Sanitize($_hash)));
-		if(!$user['username']) return $this->defaultuser;
-		return $user['username'].' '.$user['username'];
+		if(!$user['first_name']) return $this->defaultuser;
+		return $user['first_name'].' '.$user['last_name'];
 	}	
 
 	protected function GetUserEmail($_hash){
@@ -425,7 +425,7 @@ class LivechatController extends Controller
 	}
 	protected function CheckOnline($_hash){
 	
-	    $user=User::find()->where(['isonline'=>1,'id'=>mysql_real_escape_string($this->Sanitize($_hash))])->one();
+	    $user=User::find()->where(['id'=>mysql_real_escape_string($this->Sanitize($_hash))])->one();
 	   
 		if($user){
 			return true;
@@ -438,16 +438,28 @@ class LivechatController extends Controller
                 $default=$customimage;
                 else
                 $default='user_'.$size.'_'.$size.'.png';
-                $iurl='/yii2-livechatlocal/backend/modules/chat/assets/source/default/'.$default;
+                //$iurl='/yii2-livechatlocal/backend/modules/chat/assets/source/default/'.$default;
+
+                $iurl=str_replace('/web','',Yii::$app->request->baseUrl).'/modules/chat/assets/source/default/'.$default;
+                
                
                 if(isset($image) && !empty($image))
                 {
                     $iurls=Yii::getAlias('@backend').$image->path_original.$image->name;
                     if(file_exists($iurls)){
-                        $iurl=str_replace('/opt/lampp/htdocs/','/',$iurls);
+
+                    	$iurl=str_replace('/opt/lampp/htdocs/','',$iurls);
+                        $iurl=str_replace('/home/heler/public_html/beta/','',$iurl);
+                        $iurl=str_replace('/home/heler/public_html/','',$iurl);
+                        $iurl=str_replace('/backend','',$iurl);
+                        $iurl=str_replace('/web','/admin',$iurl);
+                        $iurl=str_replace('backend/','',$iurl);
+
                     }
                 }
-                return $iurl;
+
+                return Yii::$app->request->hostInfo.'/'.$iurl;
+
             }
 
 	

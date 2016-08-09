@@ -1,4 +1,4 @@
-.ui-lc-viewers{position:fixed;background:#fff;right:0px;bottom:0px; /*height: 80%;*/overflow-y:scroll;/*width: 201px;*/border-left: 1px solid grey;}
+.ui-lc-viewers{position:fixed;background:#fff;right:0px;bottom:0px; /*height: 80%;*/overflow-y:scroll;/*width: 201px;*/border-left: 1px solid #FE9300;}
 .ui-lc-chatcontents{font-size:80%;height:176px;overflow:auto;padding:0px}
 .ui-lc-chatcontents div{padding-bottom:3px}
 .ui-lc-chatinput{bottom:0;width:100%;}
@@ -18,18 +18,20 @@
 .ui-lc-chattxt{float: left; margin-left: 5px; word-wrap: break-word; width: 180px; }
 .ui-lc-gravitar{float: left; margin-top: 5px;}
 .ui-lc-gravitar img{ width: 30px; height: 30px;}
-.ui-lc-viewers-user{ float: left; margin-top: 5px; cursor: pointer; text-decoration: underline}
+.ui-lc-viewers-user{ float: left; margin-top: 12px; cursor: pointer; text-decoration: underline}
 .ui-lc-viewer-container .ui-lc-gravitar{ margin: 3px; }
 .ui-lc-viewer-container .ui-lc-gravitar img{ width: 20px; height: 20px; border: 1px solid grey }
 .ui-lc-me{ font-weight: bold}
 .ui-lc-chatheader-user{ white-space: nowrap; width: 195px; overflow: hidden;}
-.ui-lc-viewer-containerheader img{ width: 10px; height: 10px; margin-top: 0px; margin-left: 2px;margin-right:4px}
+.ui-lc-viewer-containerheader img{ width: 40px; height: 40px; margin-top: 0px; margin-left: 2px;margin-right:4px}
 .ui-lc-viewer-containerheader{ height: 26px;padding-top: 6px;border-right:0px}
-.ui-lc-viewer-containerheader-txt{ float: left;width:180px; overflow: hidden; white-space: nowrap}
+.ui-lc-viewer-containerheader-txt{ float: left;width:300px; text-transform: capitalize; overflow: hidden; white-space: nowrap}
 .ui-lc-viewer-containerheader .ui-icon{ cursor: pointer}
 .header{float:left;width:100%}
 .chatleft{float:left;text-align:left;}
 .chatright{float:left;text-align:right;}
+
+.ui-lc-viewer-containerheader-txt span {float:left;margin-top:15px;margin-left:10px;}
 
 
 
@@ -94,14 +96,14 @@ div.required label:after {    color: #FF0000;    content: " *";}
 .wrapper {    width: 91%;    margin: 0 auto;}
 .book_appointment {    position: fixed;    bottom: 0;    right: 61px;    width: 322px;    z-index: 999;}
 
-.book_head {    background: #4A2B00;    padding: 15px 25px 8px;    width: 322px;    cursor: pointer;
+.book_head {    background: #FC9200 none;    padding: 15px 25px 8px 0px;    width: 322px;    cursor: pointer;
     position: fixed;    bottom: 0;}
 .book_head  i{color: #fff;}
 .book {    margin-right: 15px;}
 .book_app {   font-size: 16px;    color: #fff;    margin-left: 10px;    margin-right: 20px;    float: left;}
 .book_head .plus { color:#fff}
 
-.book_form {    min-height: 360px;       border: 1px solid #4a2b00; width: 322px;    background: #fff;    position: fixed;    bottom: -420px;    padding: 0px 10px;
+.book_form {    min-height: 360px;       border: 1px solid #FE9300; width: 322px;    background: #fff;    position: fixed;    bottom: -420px;    padding: 0px 10px;
     float: left;
     clear: both;
     margin-top: 12px;}
@@ -119,15 +121,15 @@ div.required label:after {    color: #FF0000;    content: " *";}
 }
 .ui-widget-header {   padding: 0px !important;
 	border: none !important;    background: none !important;   color: #fff !important;   font-weight: bold;}
-.book_head  .ui-lc-gravitar{ display:none;}
+.book_head  .ui-lc-gravitar{ display:block;}
 .ui-lc-viewer-container li{ border-bottom:1px solid grey !important; height:65px;}
 .book_form  .ui-lc-gravitar{}
 .book_form  .ui-lc-gravitar img{}
 .book_form .ui-lc-viewers-user{font-weight: bold;font-size: 14px;border-bottom: 0px !important;text-decoration: none !important;
-color: #03a9f4;text-transform: capitalize;}
+color: #0093FF;text-transform: capitalize;}
 .book_form  .ui-lc-viewer-container li{padding: 5px 0px;}
 .book_form   .ui-lc-viewer-container .ui-lc-gravitar img{border: 0px;border-radius: 100px ;margin-right: 10px; height:40px ; width:40px;}
-.ui-lc-container  .ui-lc-header{      text-transform: capitalize;  background: #4A2B00 !important;    padding: 5px 0px !important;    color: #fff !important;}
+.ui-lc-container  .ui-lc-header{      text-transform: capitalize;  background: #FF9400 none repeat scroll 0% 0% !important;    padding: 5px 0px !important;    color: #fff !important;}
 .ui-lc-header .ui-icon{background-image: none !important ;  font-size: 12px;    color: #fff;    width: 15px;    height: 15px;    text-indent: inherit !important ; }
 .ui-lc-header .ui-icon:after{ content:'x';    font-weight: bold;    font-family: sans-serif;}
 .ui-lc-container  .conversation-item {       padding: 0px !important;    margin: 0px;    width: 99%;}

@@ -23,9 +23,7 @@ var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.spli
 	var _heartbeat=false;
 	var _forceautoscroll=false;
 	
-//$(".ui-lc-viewers").on('click',function(){
 	Construct();
-//	});
 	
 	function Construct(){
 		// container for chat dialogs
@@ -49,32 +47,6 @@ var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.spli
 		);
 	}
 
-	function fnSetName(){
-		var _user='Your Name';
-		var _email='Your E-mail';
-
-		if(_mydata.user != 'Unknown') _user=_mydata.user;
-		if(_mydata.email != 'Unknown') _email=_mydata.email;
-
-		$( '<div/>' ).dialog({
-			title:'Profile',
-			buttons: [ {
-				id: "dialogSave",
-				text: 'Save',
-				click: function() { 
-					$.get(settings.page, { mode: 'SetUserName', name:$('#user_name').val(), email:$('#user_email').val() } );
-					_mydata.user=$('#user_name').val();
-					_mydata.email=$('#user_email').val();
-					$( this ).dialog( "close" );
-				}
-			},{
-				id: "dialogCancel",
-				text: 'Cancel',
-				click: function(){$( this ).dialog( "close" )}
-			}]				
-		}).html('<input value="'+_user+'" id="user_name"/><input value="'+_email+'" id="user_email"/>');
-	}
-
 	function fnRenderGravitar(gravitar){
 	//return '<div class="ui-lc-gravitar"><img src="http://www.gravatar.com/avatar/'+gravitar+'?d=mm"/></div>';
 		return '<div class="ui-lc-gravitar"><img src="'+gravitar+'"/></div>';
@@ -84,7 +56,7 @@ var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.spli
         $('.ui-lc-viewer-container, .ui-lc-viewer-containerheader, .header').remove();
        // $(settings.viewer_wrapper).click(function(){ fnToggleMinimizeSide(); return false; });
         $('<div/>').addClass('ui-widget-header ui-lc-viewer-containerheader').appendTo(settings.header_wrapper);
-        $('<div/>').addClass('ui-lc-viewer-containerheader-txt').html(fnRenderGravitar(_mydata.gravitar) + ' ' +_mydata.user).appendTo('.ui-lc-viewer-containerheader');
+        $('<div/>').addClass('ui-lc-viewer-containerheader-txt').html(fnRenderGravitar(_mydata.gravitar) + ' <span>' +_mydata.user+'</span>').appendTo('.ui-lc-viewer-containerheader');
         //ar user_container= $('<div/>').addClass('ui-container').appendTo(settings.viewer_wrapper);
 		
 		//$.each(data, function(j, items){
