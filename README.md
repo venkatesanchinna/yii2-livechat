@@ -104,8 +104,19 @@ Usage
 
 5. Demo Users
 
-    Username: user1 & user2
-    Password : user1 & user2
+    ```
+
+    Username    : user1 & user2
+    Password    : user1 & user2
+
+    ```
+6. Note
+
+    ```
+
+    + This will work after login to the site so check the condition where loading the chat ui and script
+
+    ```
 
 License
 =======
