@@ -46,60 +46,66 @@ to the require section of your `composer.json` file.
 
 
 Usage
------
+=====
+
 1. Let 's add into modules config in your main config file
 
-````
-    'modules' => [
-        'chat' => [
-            'class' => 'venkatesanchinna\yii2livechat\Module'
+    ````
+        'modules' => [
+            'chat' => [
+                'class' => 'venkatesanchinna\yii2livechat\Module'
+            ]
         ]
-    ]
 
-````
+    ````
 
-Next, update the database schema 
+    Next, update the database schema 
 
-````
-$ php yii migrate/up --migrationPath=@vendor/venkatesanchinna/yii2-livechat/migrations
+    ````
+    $ php yii migrate/up --migrationPath=@vendor/venkatesanchinna/yii2-livechat/migrations
 
-````
+    ````
 
-Ok. That's done. Avaiable route now:
+    Ok. That's done. Avaiable route now:
 
-+ /chat/livechat/view
+    + /chat/livechat/view
 
 2. To register chat module configuration avaible:
 
-````php
+    ````php
 
-use venkatesanchinna\yii2livechat\assets\LivechatAsset;
-LivechatAsset::register($this);
+    use venkatesanchinna\yii2livechat\assets\LivechatAsset;
+    LivechatAsset::register($this);
 
-````
+    ````
 
 3. To load the chat view in your website
 
-```
-Add in view
+    ```
+    Add in view
 
-<div class="book_appointment ui-lc-viewers plus-minus">
-    <div class="book_head " style="bottom: 0px; opacity: 1; width: 322px;">
-        <span class="header_content book_app txtcap"></span> <span class=" fa fa-plus plus "></span>
-        <div class="clear"></div>
+    <div class="book_appointment ui-lc-viewers plus-minus">
+        <div class="book_head " style="bottom: 0px; opacity: 1; width: 322px;">
+            <span class="header_content book_app txtcap"></span> <span class=" fa fa-plus plus "></span>
+            <div class="clear"></div>
+        </div>
+        <div class="book_form " >
+            <div class="ui-container" style="bottom: -280px; opacity: 1;"></div>
+        </div>
     </div>
-    <div class="book_form " >
-        <div class="ui-container" style="bottom: -280px; opacity: 1;"></div>
-    </div>
-</div>
 
-```
+    ```
 4. To Call the chat
 
-```php
+    ```php
 
-    $this->registerJs(' $().juichat({\'display_viewers\': true});'); 
-```
+        $this->registerJs(' $().juichat({\'display_viewers\': true});'); 
+    ```
+
+5. Demo Users
+
+    Username: user1 & user2
+    Password : user1 & user2
 
 License
 =======
