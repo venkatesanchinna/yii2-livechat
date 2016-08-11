@@ -441,7 +441,9 @@ class LivechatController extends Controller
                 $default='user_'.$size.'_'.$size.'.png';
                 //$iurl='/yii2-livechatlocal/backend/modules/chat/assets/source/default/'.$default;
 
-                $iurl=str_replace('/web','',Yii::$app->request->baseUrl).'/modules/chat/assets/source/default/'.$default;
+                $iurl=str_replace('/web','',Yii::$app->request->baseUrl).'/vendor/venkatesanchinna/yii2-livechat/assets/source/default/'.$default;
+                $iurl=str_replace('backend/','',$iurl);
+                $iurl=str_replace('frontend/','',$iurl);
                 
                
                 if(isset($image) && !empty($image))

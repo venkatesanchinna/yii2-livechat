@@ -1,6 +1,6 @@
 <?php
 
-namespace venkatesanchinna\yii2livechat\chat;
+namespace venkatesanchinna\yii2livechat;
 
 /**
  * chat module definition class

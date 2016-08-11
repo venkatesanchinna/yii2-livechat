@@ -2,7 +2,7 @@
   	var _mydata;
   //	var baseUrl=location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/";
 var getUrl = window.location;
-var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname;
 
   $.fn.juichat = function( options ) {  
 
@@ -15,7 +15,7 @@ var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.spli
 		header_wrapper: '.header_content',
 		user_container:'.ui-container',
 		head_title:'.book_app txtcap',
-		page: baseUrl+'/backend/web/index.php?r=chat/livechat'
+		page: baseUrl+'?r=chat/livechat'
 	}, options);
 
 
