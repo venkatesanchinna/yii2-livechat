@@ -12,13 +12,18 @@ class m160705_064243_create_chat_table extends Migration
      */
     public function up()
     {
+        $tableOptions = null;
+        if ($this->db->driverName === 'mysql') {
+        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+        }
+
         $this->createTable('lc_chat', [
             'id' => $this->primaryKey(),
             'sender' => $this->integer()->notNull(),
             'receiver' => $this->integer()->notNull(),
             'chat' => $this->text(),
             'time' => $this->dateTime(),
-        ]);
+        ],$tableOptions);
 
         // creates index for column `sender`
         $this->createIndex(

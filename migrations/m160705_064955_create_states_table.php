@@ -12,6 +12,11 @@ class m160705_064955_create_states_table extends Migration
      */
     public function up()
     {
+        $tableOptions = null;
+        if ($this->db->driverName === 'mysql') {
+        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+        }
+
         $this->createTable('lc_states', [
             'id' => $this->primaryKey(),
             'sender' => $this->integer()->notNull(),
@@ -19,7 +24,7 @@ class m160705_064955_create_states_table extends Migration
             'state' => $this->string(100),
             'time' => $this->dateTime(),
             'option_status' => $this->string(32),
-        ]);
+        ],$tableOptions);
 
         // creates index for column `sender`
         $this->createIndex(
