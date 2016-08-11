@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\chat\controllers;
+namespace venkatesanchinna\yii2livechat\controllers;
 
 use yii\web\Controller;
 

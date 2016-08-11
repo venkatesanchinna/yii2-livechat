@@ -1,5 +1,5 @@
 <?php
-namespace app\modules\chat\assets;
+namespace venkatesanchinna\yii2livechat\assets;
 
 use yii\web\AssetBundle;
 

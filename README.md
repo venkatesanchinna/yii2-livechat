@@ -35,7 +35,7 @@ Usage
     
         'modules' => [
             'chat' => [
-                'class' => 'app\modules\chat\Module',
+                'class' => 'venkatesanchinna\yii2livechat\Module',
             ],
 
         ],
@@ -45,7 +45,7 @@ Usage
     ```php
             <?php
                 use yii\helpers\Html;
-                use app\modules\chat\assets\LivechatAsset;
+                use venkatesanchinna\yii2livechat\assets\LivechatAsset;
                 LivechatAsset::register($this);
                 $this->title='Live Chat';
             ?>

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\chat;
+namespace venkatesanchinna\yii2livechat\chat;
 
 /**
  * chat module definition class
@@ -10,7 +10,7 @@ class Module extends \yii\base\Module
     /**
      * @inheritdoc
      */
-    public $controllerNamespace = 'app\modules\chat\controllers';
+    public $controllerNamespace = 'venkatesanchinna\yii2livechat\controllers';
 
     /**
      * @inheritdoc

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\chat\models;
+namespace venkatesanchinna\yii2livechat\models;
 use common\models\User;
 use Yii;
 

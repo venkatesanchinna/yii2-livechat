@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\chat\controllers;
+namespace venkatesanchinna\yii2livechat\controllers;
 
 use Yii;
 use yii\data\ActiveDataProvider;
@@ -8,8 +8,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
-use app\modules\chat\models\Chat;
-use app\modules\chat\models\LCStates;
+use venkatesanchinna\yii2livechat\models\Chat;
+use venkatesanchinna\yii2livechat\models\LCStates;
 use common\models\User;
 /**
  * BookingController implements the CRUD actions for Booking model.
@@ -199,7 +199,7 @@ class LivechatController extends Controller
 			}
 			
 			// sort the chat records by time
-			usort($chat, array('app\modules\chat\controllers\LivechatController', 'SortByTime'));
+			usort($chat, array('venkatesanchinna\yii2livechat\controllers\LivechatController', 'SortByTime'));
 
 			// display the chat records as html
 			$output=array();
@@ -253,7 +253,7 @@ class LivechatController extends Controller
 					$_lastmsg=strtotime($row3['time']);
 				}
 				// sort the chat records by time
-				usort($chat, array('app\modules\chat\controllers\LivechatController', 'SortByTime'));
+				usort($chat, array('venkatesanchinna\yii2livechat\controllers\LivechatController', 'SortByTime'));
 
 				// display the chat records as html
 				$output=array();
@@ -272,7 +272,7 @@ class LivechatController extends Controller
 			}
 		}
 
-		usort($result, array('app\modules\chat\controllers\LivechatController', 'SortByPosition'));
+		usort($result, array('venkatesanchinna\yii2livechat\controllers\LivechatController', 'SortByPosition'));
 		
 		return $result;
 	}
