@@ -70,14 +70,20 @@ class Chat extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\common\models\User::className(), ['id' => 'receiver']);
     }
+    /**
+     * [getChatUsers description] - List get the chat users except the passed id
+     * @param  [type] $id [description] - User id
+     * @return [type]     [description] - array of users
+     */
     public function getChatUsers($id)
     {
+        $users = array();
         if(!Yii::$app->user->isGuest) {
-        $query = User::find()->orderby('first_name asc');
-        $query->select(['user.id','CONCAT(`first_name`," ",`last_name`) as name','email','user.id as hash']);
-        $query->where("user.id != '".$id."'");
-        return $query->asArray()->all();
+            $query = User::find()->orderby('first_name asc');
+            $query->select(['user.id','CONCAT_WS(" ",`first_name`, `last_name`) AS name','email','user.id as hash']);
+            $query->where("user.id != '".$id."'");
+            $users =  $query->asArray()->all();
         }
-        return array();
+        return $users;
     }
 }
